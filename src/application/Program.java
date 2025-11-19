@@ -8,9 +8,9 @@ import model.entities.Account;
 public class Program {
 
 	public static void main(String[] args) {
+		
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		
 		System.out.println("Enter account data:");
 		System.out.print("Number: ");
 		int number = sc.nextInt();
@@ -29,12 +29,11 @@ public class Program {
 		System.out.println();
 		System.out.print("Enter amount for withdraw: ");
 		double withdraw = sc.nextDouble();
-		if (withdraw > acc.getWithdrawLimit()) {
-			System.out.println("Withdraw error: The amount exceeds withdraw limit");
-		} else if (withdraw> acc.getBalance()) {
-			System.out.println("Not enough balance");
+		
+		String result = acc.withdraw(withdraw);
+		if ( result != null) {
+			System.out.println("Withdraw error: " + result);
 		} else {
-			acc.withdraw(withdraw);
 			System.out.println("New Balance: " + String.format("%.2f", acc.getBalance()));
 		}
 		sc.close();;

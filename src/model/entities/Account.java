@@ -46,7 +46,15 @@ public class Account {
 		public void deposit(double amount) {
 			balance += amount;
 		}
-		public void withdraw(double amount) {
+		public String withdraw(double amount) {
+			if (amount > getWithdrawLimit()) {
+				return "The amount exceeds withdraw limit";
+			}
+			if (amount> getBalance()) {
+				return "Not enough balance";
+			} 
+			
 			balance -= amount;
+			return null;
 		}
 }
